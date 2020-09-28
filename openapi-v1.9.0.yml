@@ -1,0 +1,460 @@
+openapi: 3.0.1
+info:
+  title: Swagger Riders
+  version: 1.9.0
+  description: Swagger for Riders API
+  contact:
+    email: alejo8591@gmail.com
+    name: Alejandro Romero
+    url: 'https://github.com/alejo8591'
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+servers:
+  - url: 'http://localhost:3030/api/v1'
+tags:
+  - name: users
+    description: Operations about user
+  - name: cars
+    description: Operations about cars
+  - name: rides
+    description: Operations about rides
+paths:
+  '/users/customers':
+    get:
+      tags:
+        - users
+      summary: Get customer users
+      operationId: getCustomerUsers
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Customer'
+        '400':
+          description: Invalid id supplied
+          content: {}
+        '404':
+          description: User not found
+          content: {}
+  '/users/drivers':
+    get:
+      tags:
+        - users
+      summary: Get driver users
+      operationId: getDriverUsers
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Driver'
+        '400':
+          description: Invalid id supplied
+          content: {}
+        '404':
+          description: User not found
+          content: {}
+  '/users/customers/create':
+    post:
+      tags:
+        - users
+      summary: Create customer user
+      description: This can only be done by the logged in user.
+      operationId: createCustomerUser
+      requestBody:
+        description: Created user object
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/Customer'
+        required: true
+      responses:
+        '201':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        default:
+          description: successful operation
+          content: {}
+      x-codegen-request-body-name: body
+  '/users/customers/{customer_id}/update':
+    put:
+      tags:
+        - users
+      summary: Update customer user
+      description: This can only be done by the logged in user.
+      parameters:
+        - name: customer_id
+          in: path
+          description: 'The customer_id for update user'
+          required: true
+          schema:
+            type: string
+      operationId: updateCustomerUser
+      requestBody:
+        description: Created user object
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/Customer'
+        required: true
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        default:
+          description: successful operation
+          content: {}
+      x-codegen-request-body-name: body
+  '/users/drivers/create':
+    post:
+      tags:
+        - users
+      summary: Create driver user
+      description: This can only be done by the logged in user.
+      operationId: createDriverUser
+      requestBody:
+        description: Created user object
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/Driver'
+        required: true
+      responses:
+        '201':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Driver'
+        default:
+          description: successful operation
+          content: {}
+      x-codegen-request-body-name: body
+  '/users/drivers/{driver_id}/update':
+    put:
+      tags:
+        - users
+      summary: Update driver user
+      description: This can only be done by the logged in user.
+      parameters:
+        - name: driver_id
+          in: path
+          description: 'The driver_id for update user'
+          required: true
+          schema:
+            type: string
+      operationId: updateDriverUser
+      requestBody:
+        description: Created user object
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/Customer'
+        required: true
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        default:
+          description: successful operation
+          content: {}
+      x-codegen-request-body-name: body
+  '/cars':
+    get:
+      tags:
+        - cars
+      summary: Get all cars
+      operationId: getAllCars
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Car'
+        '400':
+          description: Invalid id supplied
+          content: {}
+        '404':
+          description: User not found
+          content: {}
+  '/cars/{plate}/detail':
+    get:
+      tags:
+        - cars
+      summary: Get all cars
+      parameters:
+        - name: plate
+          in: path
+          description: 'The username that needs to be fetched. Use user1 for testing. '
+          required: true
+          schema:
+            type: string
+      operationId: getCarDetail
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Car'
+        '400':
+          description: Invalid id supplied
+          content: {}
+        '404':
+          description: User not found
+          content: {}
+  '/cars/create':
+    post:
+      tags:
+        - cars
+      summary: Create car
+      description: This can only be done by the logged in user.
+      operationId: carCreate
+      requestBody:
+        description: Created user object
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/Car'
+        required: true
+      responses:
+        '201':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Car'
+        default:
+          description: successful operation
+          content: {}
+      x-codegen-request-body-name: body
+  '/cars/{plate}/update':
+    put:
+      tags:
+        - cars
+      parameters:
+        - name: plate
+          in: path
+          description: 'The car update method'
+          required: true
+          schema:
+            type: string
+      summary: Create car
+      description: This can only be done by the logged in user.
+      operationId: carUpdate
+      requestBody:
+        description: Created user object
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/Car'
+        required: true
+      responses:
+        '201':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Car'
+        default:
+          description: successful operation
+          content: {}
+      x-codegen-request-body-name: body
+  '/rides':
+    get:
+      tags:
+        - rides
+      summary: Get all rides
+      operationId: getAllRides
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ride'
+        '400':
+          description: Invalid id supplied
+          content: {}
+        '404':
+          description: User not found
+          content: {}
+  '/rides/{id}/detail':
+    get:
+      tags:
+        - rides
+      summary: Get all rides
+      parameters:
+        - name: id
+          in: path
+          description: 'The username that needs to be fetched. Use user1 for testing. '
+          required: true
+          schema:
+            type: string
+      operationId: getRideDetail
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Car'
+        '400':
+          description: Invalid id supplied
+          content: {}
+        '404':
+          description: User not found
+          content: {}
+  '/rides/create':
+    post:
+      tags:
+        - rides
+      summary: Create ride
+      description: This can only be done by the logged in user.
+      operationId: rideCreate
+      requestBody:
+        description: Created user object
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/Ride'
+        required: true
+      responses:
+        '201':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ride'
+        default:
+          description: successful operation
+          content: {}
+      x-codegen-request-body-name: body
+components:
+  schemas:
+    Customer:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        customer_id:
+          type: integer
+          format: int64
+        username:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+    Driver:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        driver_id:
+          type: integer
+          format: int64
+        username:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        age:
+          type: integer
+          format: int64
+        phone:
+          type: string
+    Car:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        plate:
+          type: string
+        motor:
+          type: string
+        chassis:
+          type: string
+        color:
+          type: string
+        model:
+          type: string
+    Ride:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        first_point:
+          $ref: '#/components/schemas/Point'
+        target_point:
+          $ref: '#/components/schemas/Point'
+        customer_id:
+          type: integer
+          format: int64
+        driver_id:
+          type: integer
+          format: int64
+        time:
+          type: string
+    Point:
+      type: object
+      properties:
+        lat:
+          type: string
+        lng:
+          type: string
+      
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+  securitySchemes:
+    petstore_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: 'http://geohashapp.swagger.io/oauth/dialog'
+          scopes:
+            'write:user': modify user in your account
+            'read:user': read your user
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header

@@ -1,0 +1,18 @@
+[
+  {
+    "firstname": "Juan",
+    "phone": "228228281",
+    "customerId": 1234,
+    "email": "email@email.com",
+    "username": "juan.perez",
+    "lastname": "Perez"
+  },
+  {
+    "firstname": "Pedro",
+    "phone": "33922828",
+    "customerId": 32443,
+    "email": "email123@gmail.com",
+    "username": "pedro.perez",
+    "lastname": "Perez"
+  }
+]

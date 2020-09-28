@@ -1,0 +1,101 @@
+# Exercise 32: 
+
+###
+GET http://127.0.0.1:3030/api/v1/cars/R8W1X1/detail
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsidXNlcm5hbWUiOiJhbGVqbzg1OTIiLCJmaXJzdE5hbWUiOiJBbGVqYW5kcm8gMiIsImxhc3ROYW1lIjoiUm9tZXJvIn0sImV4cGlyZXNJbiI6MTIwLCJpYXQiOjE1OTkwNTkwNjd9.FKtjEJiM_awFu8HNsFtkUM2KLx90MZtEIiXhfudnZjc
+
+###
+GET http://127.0.0.1:3030/api/v1/rides/18/detail
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsidXNlcm5hbWUiOiJhbGVqbzg1OTIiLCJmaXJzdE5hbWUiOiJBbGVqYW5kcm8gMiIsImxhc3ROYW1lIjoiUm9tZXJvIn0sImV4cGlyZXNJbiI6MTIwLCJpYXQiOjE1OTkwNTkwNjd9.FKtjEJiM_awFu8HNsFtkUM2KLx90MZtEIiXhfudnZjc
+
+
+
+# Exercise 
+
+
+###
+POST http://localhost:3030/api/v1/users/customers/create
+Accept: application/json
+Content-Type: application/json
+
+{
+  "customer_id": 1277013123,
+  "firstname": "Alejandru",
+  "lastname": "Trisna",
+  "username": "D665725M5L6F6",
+  "email": "situspuncjsdh.las@nonummy.co.uk",
+  "phone": "2320987192"
+}
+
+###
+GET http://127.0.0.1:3030/api/v1/users/customers
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsidXNlcm5hbWUiOiJhbGVqbzg1OTIiLCJmaXJzdE5hbWUiOiJBbGVqYW5kcm8gMiIsImxhc3ROYW1lIjoiUm9tZXJvIn0sImV4cGlyZXNJbiI6MTIwLCJpYXQiOjE1OTkwNTkwNjd9.FKtjEJiM_awFu8HNsFtkUM2KLx90MZtEIiXhfudnZjc
+
+
+###
+GET http://127.0.0.1:3030/api/v1/users/drivers
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsidXNlcm5hbWUiOiJhbGVqbzg1OTIiLCJmaXJzdE5hbWUiOiJBbGVqYW5kcm8gMiIsImxhc3ROYW1lIjoiUm9tZXJvIn0sImV4cGlyZXNJbiI6MTIwLCJpYXQiOjE1OTkwNTkwNjd9.FKtjEJiM_awFu8HNsFtkUM2KLx90MZtEIiXhfudnZjc
+
+
+###
+POST http://localhost:3030/api/v1/users/drivers/create
+Accept: application/json
+Content-Type: application/json
+
+{
+  "driver_id": "16423189",
+  "firstname": "Diego",
+  "lastname": "Molano",
+  "age": 43,
+  "username": "S00B2D2",
+  "phone": "97098713394022"
+}
+
+
+###
+GET http://127.0.0.1:3030/api/v1/cars
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsidXNlcm5hbWUiOiJhbGVqbzg1OTIiLCJmaXJzdE5hbWUiOiJBbGVqYW5kcm8gMiIsImxhc3ROYW1lIjoiUm9tZXJvIn0sImV4cGlyZXNJbiI6MTIwLCJpYXQiOjE1OTkwNTkwNjd9.FKtjEJiM_awFu8HNsFtkUM2KLx90MZtEIiXhfudnZjc
+
+
+###
+POST http://localhost:3030/api/v1/cars/create
+Accept: application/json
+Content-Type: application/json
+
+{
+  "plate": "T2B1Z4",
+  "model": "Nissan",
+  "motor": "JEJ55DTQ6JS22JM17SE02871",
+  "chassis": "VGO97PC221BK98MM28AD932190KJU",
+  "color": "red"
+}
+
+
+###
+GET http://127.0.0.1:3030/api/v1/rides
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsidXNlcm5hbWUiOiJhbGVqbzg1OTIiLCJmaXJzdE5hbWUiOiJBbGVqYW5kcm8gMiIsImxhc3ROYW1lIjoiUm9tZXJvIn0sImV4cGlyZXNJbiI6MTIwLCJpYXQiOjE1OTkwNTkwNjd9.FKtjEJiM_awFu8HNsFtkUM2KLx90MZtEIiXhfudnZjc
+
+
+###
+POST http://localhost:3030/api/v1/rides/create
+Accept: application/json
+Content-Type: application/json
+
+{
+  "first_point": {"lat":"21.13087", "lng":"135.57175"},
+  "target_point": {"lat": "-67.87201", "lng":"89.36315"},
+  "driver_id": 13,
+  "customer_id": 21
+}

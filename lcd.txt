@@ -1,0 +1,129 @@
+BYTE const LCD_INIT_STRING[4] = {0x20 | (lcd_type << 2), 0xc, 1, 6};
+
+BYTE lcd_read_byte() {
+      BYTE low,high;
+      set_tris_b(0x0f);
+      
+      portb=portb|64;
+      delay_cycles(1);
+      portb=portb|16;
+      delay_cycles(1);
+      high = portb&0x0f;
+      portb=portb&239;
+      delay_cycles(1);
+      portb=portb|16;
+      delay_us(1);
+      low = portb&0x0f;;
+      portb=portb&239;
+      set_tris_b(0x00);
+      return( (high<<4) | low);
+}
+
+void lcd_send_nibble( BYTE n ) {
+      int data : 4;
+      lcd.data = n;
+
+      delay_cycles(1);
+      lcd.enable = 1;
+      portb=portb|16;
+      delay_us(2);
+      lcd.enable = 0;
+      portb=portb&239
+      
+}
+
+
+void lcd_send_byte( BYTE address, BYTE n ) {
+
+      lcd.rs = 0;
+      portb=portb&223;
+      while ( bit_test(lcd_read_byte(),7) ) ;
+       portb= portb&223;
+      delay_cycles(1);
+      lcd.rw = 0;
+      portb=portb&191;
+      delay_cycles(1);
+      lcd.enable = 0;
+      portb=portb&223
+      lcd_send_nibble(n >> 4);
+      lcd_send_nibble(n & 0xf);
+}
+
+
+
+
+
+
+
+
+
+void lcd_init() {
+    BYTE i;
+    set_tris_b(0x00);
+    portb=0;
+    delay_ms(15);
+    for(i=1;i<=3;++i) {
+       lcd_send_nibble(3);
+       delay_ms(5);
+    }
+    lcd_send_nibble(2);
+    for(i=0;i<=3;++i)
+       lcd_send_byte(0,LCD_INIT_STRING[i]);
+}
+
+//lcd.enable bit  4  portb
+//lcd.rs  bit 5 portb
+//lcd.rw   bit 6 portb
+
+void lcd_send_nibble( BYTE n ) {
+      int data: 4; 
+      lcd.data = n;
+      delay_cycles(1);
+      portb = 16|portb;
+      delay_us(2);
+      portb = 239&portb;
+}
+
+void lcd_send_byte( BYTE address, BYTE n ) {
+
+      portb=portb&223;
+      while ( bit_test(lcd_read_byte(),7) ) ;
+      lcd.rs = address;
+      portb=portb&223;
+      delay_cycles(1);
+      lcd.rw = 0;
+      portb=portb&191;
+      delay_cycles(1);
+      lcd.enable = 0;
+      portb=portb&239;
+      lcd_send_nibble(n >> 4);
+      lcd_send_nibble(n & 0xf);
+}
+
+
+
+void lcd_gotoxy( BYTE x, BYTE y) {
+   BYTE address;
+
+   if(y!=1)
+     address=0x40;
+   else
+
+     address=0;
+   address+=x-1;
+   lcd_send_byte(0,0x80|address);
+}
+
+
+
+
+void lcd_putc( char c) {
+   switch (c) {
+     case '\f'   : lcd_send_byte(0,1);
+                   delay_ms(2);
+                                           break;
+     case '\n'   : lcd_gotoxy(1,2);        break;
+     case '\b'   : lcd_send_byte(0,0x10);  break;
+     default     : lcd_send_byte(1,c);     break;
+   }
+}

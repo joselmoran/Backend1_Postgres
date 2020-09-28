@@ -1,0 +1,18 @@
+[
+  {
+    "firstPoint": "firstPoint",
+    "driverId": 12344,
+    "targetPoint": "targetPoint",
+    "time": "time",
+    "rideId": 23382,
+    "username": "juan.perez"
+  },
+  {
+    "firstPoint": "firstPoint",
+    "driverId": 393383,
+    "targetPoint": "targetPoint",
+    "time": "time",
+    "rideId": 9985858,
+    "username": "pedro.perez"
+  }
+]
